@@ -18,6 +18,7 @@ public interface PositionServices extends Remote{
     Position savePosition(Position positionObj) throws RemoteException;
     Position updatePosition(Position positionObj) throws RemoteException;
     Position deletePosition(Position positionObj) throws RemoteException;
+    Position allAsObject()throws RemoteException;
     List<Position> searchPosition(String name) throws RemoteException;
     List<Position> allPositions() throws RemoteException;
 }

@@ -5,6 +5,8 @@
  */
 package Controler;
 
+import Implementation.DepartmentImplementation;
+import Implementation.EmployeeImplementation;
 import Implementation.PositionImplementation;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -19,6 +21,8 @@ public class Server {
             System.setProperty("java.rmi.server.hostname", "127.0.0.1");
             Registry theRegistry = LocateRegistry.createRegistry(8001);
             theRegistry.rebind("position", new PositionImplementation());
+            theRegistry.rebind("department", new DepartmentImplementation());
+            theRegistry.rebind("employee", new EmployeeImplementation());
             System.out.println("Server is running on port 8001");
         }catch(Exception ex){
             ex.printStackTrace();

@@ -5,89 +5,66 @@
  */
 package Dao;
 
-import Model.Position;
+import Model.Employee;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author ZIPTECH LTD
  */
-public class PositionDao {
-
-    public Position addPostion(Position postionObj) {
+public class EmployeeDao {
+    public Employee addEmployee(Employee employeeDao) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.save(postionObj);
+            ss.save(employeeDao);
             tr.commit();
             ss.close();
-            return postionObj;
+            return employeeDao;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Position editPostion(Position postionObj) {
+    public Employee editEmployee(Employee employeeDao) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.update(postionObj);
+            ss.update(employeeDao);
             tr.commit();
             ss.close();
-            return postionObj;
+            return employeeDao;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Position deletePostion(Position postionObj) {
+    public Employee deleteEmployee(Employee employeeDao) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.delete(postionObj);
+            ss.delete(employeeDao);
             tr.commit();
             ss.close();
-            return postionObj;
+            return employeeDao;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public List<Position> searchByName(String name) {
+    public List<Employee> allEmployees() {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            List<Position> postions = ss.createCriteria(Position.class).add(Restrictions.eq("name", name)).list();
-            return postions;
+            List<Employee> Employees = ss.createCriteria(Employee.class).list();
+            return Employees;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
-    public List<Position> allPositions() {
-        try {
-            Session ss = HibernateUtil.getSessionFactory().openSession();
-            List<Position> postions = ss.createCriteria(Position.class).list();
-            return postions;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-//    public Position allPositionsAsObject() {
-//        try {
-//            Session ss = HibernateUtil.getSessionFactory().openSession();
-//            return postions;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 }

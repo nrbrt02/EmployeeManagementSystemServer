@@ -46,6 +46,11 @@ public class PositionImplementation extends UnicastRemoteObject implements Posit
     public List<Position> allPositions() throws RemoteException {
         return dao.allPositions();
     }
+
+    @Override
+    public Position allAsObject() throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
