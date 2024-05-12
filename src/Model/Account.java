@@ -26,6 +26,7 @@ public class Account implements Serializable{
     private String password;
     @Column(columnDefinition = "boolean default 1")
     private boolean status;
+    private String permisions;
     @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee theEmployee;
@@ -33,10 +34,11 @@ public class Account implements Serializable{
     public Account() {
     }
 
-    public Account(Integer accountId, String password, boolean status, Employee theEmployee) {
+    public Account(Integer accountId, String password, boolean status, String permisions, Employee theEmployee) {
         this.accountId = accountId;
         this.password = password;
         this.status = status;
+        this.permisions = permisions;
         this.theEmployee = theEmployee;
     }
 
@@ -64,6 +66,14 @@ public class Account implements Serializable{
         this.status = status;
     }
 
+    public String getPermisions() {
+        return permisions;
+    }
+
+    public void setPermisions(String permisions) {
+        this.permisions = permisions;
+    }
+
     public Employee getTheEmployee() {
         return theEmployee;
     }
@@ -71,6 +81,8 @@ public class Account implements Serializable{
     public void setTheEmployee(Employee theEmployee) {
         this.theEmployee = theEmployee;
     }
+
+    
     
     
 }

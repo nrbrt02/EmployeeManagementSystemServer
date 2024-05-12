@@ -5,6 +5,7 @@
  */
 package Controler;
 
+import Implementation.AccountImplementation;
 import Implementation.DepartmentImplementation;
 import Implementation.EmployeeImplementation;
 import Implementation.PositionImplementation;
@@ -23,6 +24,7 @@ public class Server {
             theRegistry.rebind("position", new PositionImplementation());
             theRegistry.rebind("department", new DepartmentImplementation());
             theRegistry.rebind("employee", new EmployeeImplementation());
+            theRegistry.rebind("accounts", new AccountImplementation());
             System.out.println("Server is running on port 8001");
         }catch(Exception ex){
             ex.printStackTrace();

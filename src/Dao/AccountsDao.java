@@ -5,9 +5,8 @@
  */
 package Dao;
 
-import Model.Employee;
+import Model.Account;
 import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -15,66 +14,66 @@ import org.hibernate.Transaction;
  *
  * @author ZIPTECH LTD
  */
-public class EmployeeDao {
-    public Employee addEmployee(Employee employeeDao) {
+public class AccountsDao {
+
+    public Account addAccount(Account accountObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.save(employeeDao);
+            ss.save(accountObj);
             tr.commit();
             ss.close();
-            return employeeDao;
+            return accountObj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Employee editEmployee(Employee employeeDao) {
+    public Account editAccount(Account accountObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.update(employeeDao);
+            ss.update(accountObj);
             tr.commit();
             ss.close();
-            return employeeDao;
+            return accountObj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Employee deleteEmployee(Employee employeeDao) {
+    public Account deleteAccount(Account accountObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.delete(employeeDao);
+            ss.delete(accountObj);
             tr.commit();
             ss.close();
-            return employeeDao;
+            return accountObj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Employee searchEmployee(Employee empObj){
+    public Account searchAccount(Account accountObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            Employee theEmp =(Employee) ss.get(Employee.class, empObj.getEmployeeId());
-            ss.close();
-            return theEmp;
+            Account account = (Account) ss.get(Account.class, accountObj.getTheEmployee());
+            return account;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    
-    public List<Employee> allEmployees() {
+
+    public List<Account> allAccounts() {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            List<Employee> Employees = ss.createCriteria(Employee.class).list();
-            return Employees;
+            List<Account> accounts = ss.createCriteria(Account.class).list();
+            return accounts;
         } catch (Exception e) {
             e.printStackTrace();
         }

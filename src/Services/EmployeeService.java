@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface EmployeeService extends Remote{
     Employee saveEmployee(Employee empolyeeObj) throws RemoteException;
+    Employee searchEmployee(Employee empolyeeObj) throws RemoteException;
     Employee updateEmployee(Employee empolyeeObj) throws RemoteException;
     Employee deleteEmployee(Employee empolyeeObj) throws RemoteException;
     List<Employee> allEmployees() throws RemoteException;

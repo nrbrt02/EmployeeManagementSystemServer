@@ -45,4 +45,11 @@ public class EmployeeImplementation extends UnicastRemoteObject implements Emplo
         return dao.allEmployees();
     }
 
+    @Override
+    public Employee searchEmployee(Employee empolyeeObj) throws RemoteException {
+        return dao.searchEmployee(empolyeeObj);
+    }
+
+    
+
 }
