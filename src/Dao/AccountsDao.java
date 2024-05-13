@@ -61,7 +61,7 @@ public class AccountsDao {
     public Account searchAccount(Account accountObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            Account account = (Account) ss.get(Account.class, accountObj.getTheEmployee());
+            Account account = (Account) ss.get(Account.class, accountObj.getTheEmployee().getEmployeeId());
             return account;
         } catch (Exception e) {
             e.printStackTrace();
