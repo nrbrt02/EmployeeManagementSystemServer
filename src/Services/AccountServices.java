@@ -14,10 +14,17 @@ import java.util.List;
  *
  * @author ZIPTECH LTD
  */
-public interface AccountServices extends Remote{
+public interface AccountServices extends Remote {
+
     Account saveAccount(Account accountObj) throws RemoteException;
+
     Account searchAccount(Account accountObj) throws RemoteException;
+
     Account updateAccount(Account accountObj) throws RemoteException;
+
     Account deleteAccount(Account accountObj) throws RemoteException;
+
     List<Account> allAccounts() throws RemoteException;
+
+    List<Account> loginAccount(Account accountObj) throws RemoteException;
 }

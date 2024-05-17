@@ -27,7 +27,7 @@ public class EmployeeImplementation extends UnicastRemoteObject implements Emplo
 
     @Override
     public Employee saveEmployee(Employee empolyeeObj) throws RemoteException {
-        return dao.addEmployee(empolyeeObj);
+        return dao.addOrUpdateEmployee(empolyeeObj);
     }
 
     @Override
@@ -50,6 +50,9 @@ public class EmployeeImplementation extends UnicastRemoteObject implements Emplo
         return dao.searchEmployee(empolyeeObj);
     }
 
-    
+    @Override
+    public List<Employee> searchByEmail(String email) throws RemoteException {
+        return dao.searchByEmail(email);
+    }
 
 }

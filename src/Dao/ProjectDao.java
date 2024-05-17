@@ -5,9 +5,8 @@
  */
 package Dao;
 
-import Model.Employee;
+import Model.Project;
 import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -16,78 +15,79 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author ZIPTECH LTD
  */
-public class EmployeeDao {
+public class ProjectDao {
 
-    public Employee addOrUpdateEmployee(Employee employeeDao) {
+    public Project addProject(Project projectObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.saveOrUpdate(employeeDao);
+            ss.saveOrUpdate(projectObj);
             tr.commit();
             ss.close();
-            return employeeDao;
+            return projectObj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Employee editEmployee(Employee employeeDao) {
+    public Project editProject(Project projectObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.update(employeeDao);
+            ss.update(projectObj);
             tr.commit();
             ss.close();
-            return employeeDao;
+            return projectObj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Employee deleteEmployee(Employee employeeDao) {
+    public Project deleteProject(Project projectObj) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.delete(employeeDao);
+            ss.delete(projectObj);
             tr.commit();
             ss.close();
-            return employeeDao;
+            return projectObj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Employee searchEmployee(Employee empObj) {
+    public List<Project> searchByName(String name) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            Employee theEmp = (Employee) ss.get(Employee.class, empObj.getEmployeeId());
+            List<Project> projects = ss.createCriteria(Project.class).add(Restrictions.eq("name", name)).list();
+            return projects;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Project searchById(Project pjObj) {
+        try {
+            Session ss = HibernateUtil.getSessionFactory().openSession();
+            Project thePj = (Project) ss.get(Project.class, pjObj.getProjectId());
             ss.close();
-            return theEmp;
+            return thePj;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public List<Employee> allEmployees() {
+    public List<Project> allProjects() {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            List<Employee> Employees = ss.createCriteria(Employee.class).list();
-            return Employees;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public List<Employee> searchByEmail(String email) {
-        try {
-            Session ss = HibernateUtil.getSessionFactory().openSession();
-            List<Employee> employeee = ss.createCriteria(Employee.class).add(Restrictions.eq("Email", email)).list();
-            return employeee;
+            List<Project> projects = ss.createCriteria(Project.class).list();
+            ss.close();
+            return projects;
         } catch (Exception e) {
             e.printStackTrace();
         }

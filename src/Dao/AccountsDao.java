@@ -7,8 +7,10 @@ package Dao;
 
 import Model.Account;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -20,7 +22,7 @@ public class AccountsDao {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
             Transaction tr = ss.beginTransaction();
-            ss.save(accountObj);
+            ss.saveOrUpdate(accountObj);
             tr.commit();
             ss.close();
             return accountObj;
@@ -76,6 +78,21 @@ public class AccountsDao {
             return accounts;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Account> loginAccount(Account accountObj) {
+
+        try {
+            Session ss = HibernateUtil.getSessionFactory().openSession();
+            Criteria criteria = ss.createCriteria(Account.class);
+            criteria.add(Restrictions.eq("theEmployee", accountObj.getTheEmployee()));
+            criteria.add(Restrictions.eq("password", accountObj.getPassword()));
+            List<Account> foundAccount = criteria.list();
+            ss.close();
+            return foundAccount;
+        } catch (Exception e) {
         }
         return null;
     }

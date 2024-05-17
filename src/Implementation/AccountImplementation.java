@@ -47,6 +47,11 @@ public class AccountImplementation extends UnicastRemoteObject implements Accoun
     public Account searchAccount(Account accountObj) throws RemoteException {
         return dao.searchAccount(accountObj);
     }
+
+    @Override
+    public List<Account> loginAccount(Account accountObj) throws RemoteException {
+        return dao.loginAccount(accountObj);
+    }
     
     
 

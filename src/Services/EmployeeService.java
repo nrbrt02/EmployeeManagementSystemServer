@@ -21,6 +21,7 @@ public interface EmployeeService extends Remote{
     Employee updateEmployee(Employee empolyeeObj) throws RemoteException;
     Employee deleteEmployee(Employee empolyeeObj) throws RemoteException;
     List<Employee> allEmployees() throws RemoteException;
+    List<Employee> searchByEmail(String email) throws RemoteException;
 
     
 }

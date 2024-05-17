@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -36,19 +37,22 @@ public class Assignment implements Serializable{
     private String description;
     private String priority;
     
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project theProject;
+    
     @ManyToMany
     @JoinTable(
-            name = "project_task",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id")
+            name = "assigned_group",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
     )
-    private Set<Project> theProject;
-    private Group assignedTo;
+    private Set<Group> assignedTo;
 
     public Assignment() {
     }
 
-    public Assignment(Integer assignemntId, String name, Date startDate, Date endDate, String status, String description, String priority, Set<Project> theProject, Group assignedTo) {
+    public Assignment(Integer assignemntId, String name, Date startDate, Date endDate, String status, String description, String priority, Project theProject, Set<Group> assignedTo) {
         this.assignemntId = assignemntId;
         this.name = name;
         this.startDate = startDate;
@@ -59,6 +63,10 @@ public class Assignment implements Serializable{
         this.theProject = theProject;
         this.assignedTo = assignedTo;
     }
+
+
+
+
 
     public Integer getAssignemntId() {
         return assignemntId;
@@ -116,21 +124,24 @@ public class Assignment implements Serializable{
         this.priority = priority;
     }
 
-    public Set<Project> getTheProject() {
+    public Project getTheProject() {
         return theProject;
     }
 
-    public void setTheProject(Set<Project> theProject) {
+    public void setTheProject(Project theProject) {
         this.theProject = theProject;
     }
 
-    public Group getAssignedTo() {
+
+    public Set<Group> getAssignedTo() {
         return assignedTo;
     }
 
-    public void setAssignedTo(Group assignedTo) {
+    public void setAssignedTo(Set<Group> assignedTo) {
         this.assignedTo = assignedTo;
     }
+
+
     
     
 }

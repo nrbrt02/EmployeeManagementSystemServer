@@ -52,5 +52,10 @@ Contributor(s):
     <mapping class="Model.Department"/>
     <mapping class="Model.Employee"/>
     <mapping class="Model.Position"/>
+    <mapping class="Model.Attendance"/>
+    <mapping class="Model.Assignment"/>
+    <mapping class="Model.Leave"/>
+    <mapping class="Model.Project"/>
+    <mapping class="Model.Group"/>
   </session-factory>
 </hibernate-configuration>

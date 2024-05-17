@@ -8,7 +8,9 @@ package Controler;
 import Implementation.AccountImplementation;
 import Implementation.DepartmentImplementation;
 import Implementation.EmployeeImplementation;
+import Implementation.GroupImplementation;
 import Implementation.PositionImplementation;
+import Implementation.ProjectImplementation;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -25,6 +27,8 @@ public class Server {
             theRegistry.rebind("department", new DepartmentImplementation());
             theRegistry.rebind("employee", new EmployeeImplementation());
             theRegistry.rebind("accounts", new AccountImplementation());
+            theRegistry.rebind("project", new ProjectImplementation());
+            theRegistry.rebind("group", new GroupImplementation());
             System.out.println("Server is running on port 8001");
         }catch(Exception ex){
             ex.printStackTrace();
