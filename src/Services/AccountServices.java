@@ -20,6 +20,8 @@ public interface AccountServices extends Remote {
 
     Account searchAccount(Account accountObj) throws RemoteException;
 
+    List<Account> searchAccountEmail(Account accountObj) throws RemoteException;
+
     Account updateAccount(Account accountObj) throws RemoteException;
 
     Account deleteAccount(Account accountObj) throws RemoteException;
@@ -27,4 +29,6 @@ public interface AccountServices extends Remote {
     List<Account> allAccounts() throws RemoteException;
 
     List<Account> loginAccount(Account accountObj) throws RemoteException;
+
+    Integer ChangePassword(Account accountObj) throws RemoteException;
 }

@@ -10,18 +10,22 @@ import java.util.List;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ZIPTECH LTD
  */
-public interface EmployeeService extends Remote{
+public interface EmployeeService extends Remote {
+
     Employee saveEmployee(Employee empolyeeObj) throws RemoteException;
+
     Employee searchEmployee(Employee empolyeeObj) throws RemoteException;
+
     Employee updateEmployee(Employee empolyeeObj) throws RemoteException;
+
     Employee deleteEmployee(Employee empolyeeObj) throws RemoteException;
+
     List<Employee> allEmployees() throws RemoteException;
+
     List<Employee> searchByEmail(String email) throws RemoteException;
 
-    
 }

@@ -7,7 +7,6 @@ package Model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.Duration;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.sql.Time;
 /**
  *
  * @author ZIPTECH LTD
@@ -27,13 +28,21 @@ public class Attendance implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "attendance_id")
     private Integer attendanceId;
+    
+    @Temporal(TemporalType.DATE)
     private Date date;
+    
     @Column(name = "in_time")
-    private Timestamp inTime;
+    @Temporal(TemporalType.TIME)
+    private Date inTime;
+    
     @Column(name = "out_time")
-    private Timestamp outTime;
+    @Temporal(TemporalType.TIME)
+    private Date outTime;
+    
     @Column(name = "total_time")
-    private Duration totalTime;
+    private long totalTime;
+    
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee theEmployee;
@@ -41,7 +50,7 @@ public class Attendance implements Serializable{
     public Attendance() {
     }
 
-    public Attendance(Integer id, Date date, Timestamp inTime, Timestamp outTime, Duration totalTime, Employee theEmployee) {
+    public Attendance(Integer id, Date date, Date inTime, Date outTime, long totalTime, Employee theEmployee) {
         this.attendanceId = id;
         this.date = date;
         this.inTime = inTime;
@@ -66,27 +75,27 @@ public class Attendance implements Serializable{
         this.date = date;
     }
 
-    public Timestamp getInTime() {
+    public Date getInTime() {
         return inTime;
     }
 
-    public void setInTime(Timestamp inTime) {
+    public void setInTime(Date inTime) {
         this.inTime = inTime;
     }
 
-    public Timestamp getOutTime() {
+    public Date getOutTime() {
         return outTime;
     }
 
-    public void setOutTime(Timestamp outTime) {
+    public void setOutTime(Date outTime) {
         this.outTime = outTime;
     }
 
-    public Duration getTotalTime() {
+    public long getTotalTime() {
         return totalTime;
     }
 
-    public void setTotalTime(Duration totalTime) {
+    public void setTotalTime(long totalTime) {
         this.totalTime = totalTime;
     }
 

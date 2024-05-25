@@ -29,6 +29,11 @@ public class AccountImplementation extends UnicastRemoteObject implements Accoun
     }
 
     @Override
+    public List<Account> searchAccountEmail(Account accountObj) throws RemoteException {
+        return dao.searchAccountEmail(accountObj);
+    }
+
+    @Override
     public Account updateAccount(Account accountObj) throws RemoteException {
         return dao.editAccount(accountObj);
     }
@@ -52,7 +57,10 @@ public class AccountImplementation extends UnicastRemoteObject implements Accoun
     public List<Account> loginAccount(Account accountObj) throws RemoteException {
         return dao.loginAccount(accountObj);
     }
-    
-    
+
+    @Override
+    public Integer ChangePassword(Account accountObj) throws RemoteException {
+        return dao.ChangePassword(accountObj);
+    }
 
 }

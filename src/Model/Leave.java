@@ -14,19 +14,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author ZIPTECH LTD
  */
-@Entity(name = "leave")
-public class Leave implements Serializable{
+@Entity(name = "leavee")
+public class Leave implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "leave_id")
     private Integer leaveId;
     private String type;
+    @Temporal(TemporalType.DATE)
     private Date startDate;
+    @Temporal(TemporalType.DATE)
     private Date endDate;
     private String status;
     @ManyToOne
@@ -92,7 +97,5 @@ public class Leave implements Serializable{
     public void setTheEmployee(Employee theEmployee) {
         this.theEmployee = theEmployee;
     }
-    
-    
-    
+
 }

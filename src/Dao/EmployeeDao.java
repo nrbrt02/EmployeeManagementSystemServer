@@ -7,6 +7,7 @@ package Dao;
 
 import Model.Employee;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -86,8 +87,9 @@ public class EmployeeDao {
     public List<Employee> searchByEmail(String email) {
         try {
             Session ss = HibernateUtil.getSessionFactory().openSession();
-            List<Employee> employeee = ss.createCriteria(Employee.class).add(Restrictions.eq("Email", email)).list();
-            return employeee;
+            Criteria criteria = ss.createCriteria(Employee.class).add(Restrictions.eq("Email", email));
+            List<Employee> theEmp = criteria.list();
+            return theEmp;
         } catch (Exception e) {
             e.printStackTrace();
         }
